@@ -2,9 +2,9 @@ package org.howard.edu.lsp.assignment5;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.howard.edu.lsp.midterm.question2.Book;
-
-
+/**
+ * This is my implemented IntegerSet class
+ */
 public class IntegerSet  {
 	// Store the set elements in an ArrayList.
 	private List<Integer> set = new ArrayList<Integer>();
@@ -24,6 +24,16 @@ public class IntegerSet  {
 	public IntegerSet(ArrayList<Integer> set) {
 		this.set = set;
 	}
+
+    /**
+	 * Returns an Item from set by index
+	 * 
+	 * @param index is a int object, that is the index of a item from the set that you want returned
+ 	 * @return Interger value from the index of the Set
+	 */
+ 	public Integer get(int index) {
+        return set.get(index);
+    }
 
     /**
      * Clears the internal representation of the set.
@@ -92,38 +102,124 @@ public class IntegerSet  {
      * @return int value of the largest value in the set
      */
     public int largest(){
-        int largVal = set.get(0);
+        int largeVal = set.get(0);
 		for (int i = 0; i < set.size(); i++) {
-			if (set.get(i) > largVal) {
-				largVal = set.get(i);
+			if (set.get(i) > largeVal) {
+				largeVal = set.get(i);
 			}
 		}
-		return largVal;
+		return largeVal;
     }; 
 
-    // Returns the smallest item in the set. 5 pts.
-    public int smallest()  {…};
 
-        // Adds an item to the set or does nothing it already there. 5 pts.	
-        public void add(int item) {…}; // adds item to the set or does nothing if it is in set
+    /**
+     * Returns the smallest item in the set. 5 pts.
+     * 
+     * @return int value of the smallest value in the set
+     */
+    public int smallest(){
+        int smallVal = set.get(0);
+		for (int i = 0; i < set.size(); i++) {
+			if (set.get(i) < smallVal) {
+				smallVal = set.get(i);
+			}
+		}
+		return smallVal;
+    }; 
 
-        // Removes an item from the set or does nothing if not there. 5 pts.
-    public void remove(int item) {…}; 
 
-    // Set union. 11 pts.
-    public void union(IntegerSet intSetb) {…};
+    /**
+	 * Adds an item to the set or does nothing it already there. 5 pts.	
+	 * 
+	 * @param item is a int object that you want added to the set
+	 */
+ 	public void add(int item) {
+		if(!(set.contains(item))){
+ 			set.add(item);
+		}
+ 	}
 
-    // Set intersection, all elements in s1 and s2. 12 pts.
-    public void intersect(IntegerSet intSetb) {…}; 
+    /**
+ 	 * Removes an item from the set or does nothing if not there. 5 pts.e
+ 	 * 
+ 	 * @param item is a int object that you want removed from the set
+ 	 */
+	public void remove(int item){
+		if (set.indexOf(item) != -1) {
+			set.remove(set.indexOf(item));
+		}
+		
+	}
 
-    // Set difference, i.e., s1 –s2. 12 pts.
-    public void diff(IntegerSet intSetb); // set difference, i.e. s1 - s2
+    /**
+     * Creates the Set union. 11 pts
+     *
+     * @param intSetb The IntegerSet to union with this set.
+     */
+    public void union(IntegerSet intSetb) {
+        for (int i = 0; i < intSetb.length(); i++) {
+            if (!this.set.contains(intSetb.get(i))) {
+                this.set.add(intSetb.get(i));
+            }
+        }
+    }
 
-    // Set complement, all elements not in s1. 11 pts.
-    public void complement(IntegerSet intSetb) { …}
+    /**
+     * Creates Set intersection, all elements in s1 and s2. 12 pts.
+     *
+     * @param intSetb The IntegerSet to intersect with this set.
+     */
+    public void intersect(IntegerSet intSetb) {
+        ArrayList<Integer> intersection = new ArrayList<>();
+        for (int i = 0; i < set.size(); i++) {
+            if (intSetb.contains(set.get(i))) {
+                intersection.add(set.get(i));
+            }
+        }
+        this.set = intersection;
+    }
 
-    // Returns true if the set is empty, false otherwise. 5 pts.
-    boolean isEmpty(); 
+    /**
+     * Creates Set difference, i.e., s1 –s2. 12 pts.
+     *
+     * @param intSetb The IntegerSet to subtract from this set.
+     */
+    public void diff(IntegerSet intSetb) {
+        ArrayList<Integer> difference = new ArrayList<>();
+        for (int i = 0; i < set.size(); i++) {
+            if (!intSetb.contains(set.get(i))) {
+                difference.add(set.get(i));
+            }
+        }
+        this.set = difference;
+    }
+
+    /**
+     * Creates Set complement, all elements not in s1. 11 pts.
+     *
+     * @param intSetb The IntegerSet to compare against for the complement.
+     */
+    public void complement(IntegerSet intSetb) {
+        ArrayList<Integer> complement = new ArrayList<>();
+        for (int i = 0; i < intSetb.length(); i++) {
+            if (!this.set.contains(intSetb.get(i))) {
+                complement.add(intSetb.get(i));
+            }
+        }
+        this.set = complement;
+    }
+
+    /**
+	 * Returns true if the set is empty, false otherwise. 5 pts.
+	 * 
+	 * @return boolean whether the set is empty or not
+	 */
+	public boolean isEmpty() {
+		if (set.size() == 0) {
+			return true;
+		}
+		return false;
+	}
 
     // Return String representation of your set.  This overrides the equal method from 
     // the Object class. 5 pts.
