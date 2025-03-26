@@ -76,11 +76,30 @@ public class IntegerSet  {
         return true;
     }; 
 
-    // Returns true if the set contains the value, otherwise false. 5 pts.
-    
-    public boolean contains(int value) {…};    
-    // Returns the largest item in the set. 5 pts.
-    public int largest()  {…}; 
+    /**
+     * Returns true if the set contains the value, otherwise false. 5 pts.
+     * 
+     * @param value a value you want to check if it is in the IntergerSet
+     * @return boolean that is true if the set contains the value, false otherwise;
+     */
+    public boolean contains(int value) {
+        return set.contains(value);
+    };    
+
+    /**
+     * Returns the largest item in the set. 5 pts.
+     * 
+     * @return int value of the largest value in the set
+     */
+    public int largest(){
+        int largVal = set.get(0);
+		for (int i = 0; i < set.size(); i++) {
+			if (set.get(i) > largVal) {
+				largVal = set.get(i);
+			}
+		}
+		return largVal;
+    }; 
 
     // Returns the smallest item in the set. 5 pts.
     public int smallest()  {…};
