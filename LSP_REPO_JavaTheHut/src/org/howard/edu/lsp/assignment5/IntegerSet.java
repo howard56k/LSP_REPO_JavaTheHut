@@ -1,0 +1,118 @@
+package org.howard.edu.lsp.assignment5;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.howard.edu.lsp.midterm.question2.Book;
+
+
+public class IntegerSet  {
+	// Store the set elements in an ArrayList.
+	private List<Integer> set = new ArrayList<Integer>();
+
+    /**
+     * The Default Constructor, to initialize an empty set
+     */
+	public IntegerSet() {
+	}
+
+
+    /**
+     * Constructor if you want to pass in already initialized list of integers.
+     * 
+     * @param set takes in an ArrayList of integers used to initialize the IntegerSet.
+     */
+	public IntegerSet(ArrayList<Integer> set) {
+		this.set = set;
+	}
+
+    /**
+     * Clears the internal representation of the set.
+     */
+    public void clear() {
+        set.clear();
+    };
+
+    /**
+     * Returns the length of the set.
+     * 
+     * @return interger of the length of the set
+     */
+    public int length() {
+        return set.size();
+    }; 
+
+    /**
+    * Two sets are equal if they contain all of the same values in ANY order.  This overrides the equal method from the Object class. 10 pts.
+
+    * @param o takes in a Set to compare against the current set
+    * @return boolean that is true if the 2 sets are equal, false otherwise;
+    */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            // Checks if the object is being compared against itself
+            return true;
+        if (o == null || getClass() != o.getClass())
+            // Checks if Obj is even comparable / is a Book
+            return false;
+        
+        IntegerSet otherIntegerSet = (IntegerSet) o;
+
+        if (otherIntegerSet.length() == set.size()){
+            for (int i = 0; i < set.size(); i++) {
+                if(otherIntegerSet.contains(set.get(i))){
+                    continue;
+                }else{
+                //if not found it will break the look and return false
+                    return false;
+                }
+		    }
+        }else{
+            // Checks if they are the same length and if not returns false since can not be equal
+            return false;
+        }
+
+        //Since it was able to run through without breaking means the sets are equal
+        return true;
+    }; 
+
+    // Returns true if the set contains the value, otherwise false. 5 pts.
+    
+    public boolean contains(int value) {…};    
+    // Returns the largest item in the set. 5 pts.
+    public int largest()  {…}; 
+
+    // Returns the smallest item in the set. 5 pts.
+    public int smallest()  {…};
+
+        // Adds an item to the set or does nothing it already there. 5 pts.	
+        public void add(int item) {…}; // adds item to the set or does nothing if it is in set
+
+        // Removes an item from the set or does nothing if not there. 5 pts.
+    public void remove(int item) {…}; 
+
+    // Set union. 11 pts.
+    public void union(IntegerSet intSetb) {…};
+
+    // Set intersection, all elements in s1 and s2. 12 pts.
+    public void intersect(IntegerSet intSetb) {…}; 
+
+    // Set difference, i.e., s1 –s2. 12 pts.
+    public void diff(IntegerSet intSetb); // set difference, i.e. s1 - s2
+
+    // Set complement, all elements not in s1. 11 pts.
+    public void complement(IntegerSet intSetb) { …}
+
+    // Returns true if the set is empty, false otherwise. 5 pts.
+    boolean isEmpty(); 
+
+    // Return String representation of your set.  This overrides the equal method from 
+    // the Object class. 5 pts.
+    // return String representation of your set
+    @Override
+    public String toString() {
+        return set.toString();
+    };	
+    
+}
+
